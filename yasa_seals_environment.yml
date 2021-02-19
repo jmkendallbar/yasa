@@ -1,0 +1,46 @@
+name: yasa_seals
+channels:
+- conda-forge
+dependencies:
+- python>=3.8
+- pip
+- numpy
+- scipy
+- matplotlib
+- numba
+- pandas
+- xlrd
+- scikit-learn>=0.21
+- h5py
+- ipywidgets
+- pillow
+- statsmodels
+- jupyter
+- joblib
+- psutil
+- numexpr
+- traits
+- pyface
+- traitsui
+- imageio
+- tqdm
+- spyder-kernels
+- imageio-ffmpeg>=0.4.1
+- vtk>=9.0.1
+- pyvista>=0.24
+- pyvistaqt>=0.2.0
+- mayavi
+- PySurfer
+- dipy
+- nibabel
+- nilearn
+- python-picard
+- pyqt
+- mne>=0.20.0
+- mffpy>=0.5.7
+- pip:
+  - lspopt
+  - git+git://github.com/raphaelvallat/entropy@master#egg=entropy
+  - seaborn
+  - pyriemann
+  - tensorpac>=0.6.4
