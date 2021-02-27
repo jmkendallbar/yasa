@@ -10,11 +10,10 @@ Importing data from EDF
 # To write in the anaconda command prompt to update yasa_seals local conda environment with all of the packages required to locally run yasa (and changed staging.py file):
 # conda env update --prefix .conda/envs/yasa_seals --file "C:\Users\Jessie\Documents\GitHub\Conda Environments/yasa_seals_environment.yml"  --prune
 
-# If you change staging.py then you can upload it 
+# If you change staging.py then you can re-import yasa with it 
 # if foo.py has changed:
-#     unimport foo  <-- How do I do this?
-#     import foo
-#     myfoo = foo.Foo()
+#     unimport yasa  <-- How do I do this?
+#     import yasa
 
 import yasa
 import mne

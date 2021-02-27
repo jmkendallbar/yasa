@@ -51,6 +51,16 @@ class SleepStaging:
         * ``'male'``: sex of the participant (1 or True = male, 0 or
           False = female)
 
+    ADDITIONAL PARAMETERS FOR yasa_seals:
+    ecg_name: str
+        The name of the ECG channel in ``raw``. Preferentially a channel 
+        derived from two electrodes placed anterior and posterior of 
+        seal's fore-flippers.
+    heart_rate_name: str
+        The name of the Heart Rate channel calculated based on ECG channel.
+    acc_name: str
+        The name of each Accelerometer channel (for activity and breathing)
+
     Notes
     -----
 
@@ -58,6 +68,9 @@ class SleepStaging:
 
     For each 30-seconds epoch and each channel, the following features are
     calculated:
+
+    ALTERATION FOR yasa_seals: We are decreasing the duration of the epoch
+    down to 15-seconds to show finer resolution changes.
 
     * Standard deviation
     * Interquartile range
@@ -70,10 +83,17 @@ class SleepStaging:
     * Permutation entropy
     * Higuchi and Petrosian fractal dimension
 
+    ADDITIONAL FEATURES FOR yasa_seals:
+    Note: The above features will also generated for ECG, HR, and Acc channels.
+
     In addition, the algorithm also calculates a smoothed and normalized
     version of these features. Specifically, a 5-min centered weighted rolling
     average and a 10 min past rolling average are applied. The resulting
     smoothed features are then normalized using a robust z-score.
+
+    ALTERATION FOR yasa_seals: We are decreasing the duration of the rolling
+    average down to 1-min centered weighted rolling average and a 2 min past
+    rolling average.
 
     The data are automatically downsampled to 100 Hz for faster
     computation.
@@ -91,7 +111,14 @@ class SleepStaging:
     predicted probabilities of each sleep stage at each epoch. This can in turn
     be used to derive a confidence score at each epoch.
 
-    .. important:: The predictions should ALWAYS be double-check by a trained
+    YASA Sleep stages include:
+    - W: Waking
+    - N1: Stage 1 sleep
+    - N2: Stage 2 sleep
+    - N3: Stage 3 sleep
+    - REM: Paradoxical sleep
+    
+        .. important:: The predictions should ALWAYS be double-check by a trained
         visual scorer, especially for epochs with low confidence. A full
         inspection should be performed in the following cases:
 
@@ -105,6 +132,22 @@ class SleepStaging:
         human inter-rater agreement. Be very careful for potential
         misclassification of N1 sleep (e.g. scored as Wake or N2) when
         inspecting the predicted sleep stages.
+
+    ALTERATION FOR yasa_seals: We are training YASA_seals' classifiers on 
+    __ days of northern elephant seal sleep studies involving female subjects 
+    aged 0.8 or 1.8 years old. We anticipate that these recordings will 
+    encompass all sleep stages present for young elephant seals aged <3 yrs.
+    YASA_seals Sleep stages include:
+        - Active Waking 
+        - Quiet Waking
+        - Light Sleep
+        - Slow Wave Sleep
+        - Paradoxical Sleep
+    YASA_seals Each sleep stage contains a suffix designation of:
+        - STAGE_A : Apnea (from start to end bradycardia)
+        - STAGE_E : Eupnea (from first breath to last breath)
+        - STAGE_tA : Transition to Apnea (from last breath to start bradycardia)
+        - STAGE_tE : Transition to Eupnea (from end bradycardia to first breath)
 
     References
     ----------
