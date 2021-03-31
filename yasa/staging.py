@@ -85,6 +85,12 @@ class SleepStaging:
 
     ADDITIONAL FEATURES FOR yasa_seals:
     Note: The above features will also generated for ECG, HR, and Acc channels.
+    
+    For HR, the following features will be calculated:
+        Mean HR
+        STD HR
+        rMSSD
+        Power in the HF and LF bands
 
     In addition, the algorithm also calculates a smoothed and normalized
     version of these features. Specifically, a 5-min centered weighted rolling
@@ -138,11 +144,11 @@ class SleepStaging:
     aged 0.8 or 1.8 years old. We anticipate that these recordings will 
     encompass all sleep stages present for young elephant seals aged <3 yrs.
     YASA_seals Sleep stages include:
-        - Active Waking 
-        - Quiet Waking
-        - Light Sleep
-        - Slow Wave Sleep
-        - Paradoxical Sleep
+        - AW: Active Waking 
+        - QW: Quiet Waking
+        - LS: Light Sleep
+        - SWS: Slow Wave Sleep
+        - PS: Paradoxical Sleep
     YASA_seals Each sleep stage contains a suffix designation of:
         - STAGE_A : Apnea (from start to end bradycardia)
         - STAGE_E : Eupnea (from first breath to last breath)
